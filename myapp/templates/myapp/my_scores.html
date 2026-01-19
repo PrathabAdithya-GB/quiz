@@ -1,0 +1,29 @@
+{% extends "myapp/base.html" %}
+{% block title %}My Scores{% endblock %}
+
+{% block content %}
+<h3 class="mb-3">🏆 My Quiz Attempts</h3>
+
+{% if attempts %}
+<table class="table table-bordered table-hover">
+  <thead class="table-light">
+    <tr>
+      <th>Quiz</th>
+      <th>Score</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in attempts %}
+    <tr>
+      <td>{{ a.quiz.title }}</td>
+      <td>{{ a.score }}</td>
+      <td>{{ a.completed_at|date:"d M Y, H:i" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>You have not attempted any quizzes yet.</p>
+{% endif %}
+{% endblock %}

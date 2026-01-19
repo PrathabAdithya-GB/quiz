@@ -1,0 +1,185 @@
+/* =============================
+   ROOT VARIABLES (LIGHT MODE)
+============================= */
+:root {
+  --bg-main: #f7f9fc;
+  --text-main: #1f2937;
+
+  --nav-gradient: linear-gradient(90deg, #2563eb, #1e40af);
+  --footer-gradient: linear-gradient(90deg, #0f172a, #020617);
+
+  --card-bg: #ffffff;
+  --accent: #38bdf8;
+}
+
+/* =============================
+   DARK MODE VARIABLES
+============================= */
+body.dark-mode {
+  --bg-main: #020617;
+  --text-main: #e5e7eb;
+  --card-bg: #0f172a;
+}
+
+/* =============================
+   GLOBAL
+============================= */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* =============================
+   NAVBAR (GRADIENT)
+============================= */
+.custom-navbar {
+  background: var(--nav-gradient);
+  padding: 0.75rem 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+
+/* Brand */
+.custom-navbar .navbar-brand {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+  transition: transform 0.3s ease;
+}
+
+.custom-navbar .navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+/* Nav links */
+.custom-navbar .nav-link {
+  color: #e0e7ff !important;
+  font-weight: 500;
+  margin-left: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Animated underline */
+.custom-navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.custom-navbar .nav-link:hover::after {
+  width: 100%;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #ffffff !important;
+}
+
+/* Logout button */
+.custom-navbar .btn-outline-light {
+  border-color: #ffffff;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.custom-navbar .btn-outline-light:hover {
+  background-color: #ffffff;
+  color: #1e40af;
+}
+
+/* Mobile toggler icon fix */
+.navbar-toggler {
+  border-color: rgba(255,255,255,0.6);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+
+
+/* =============================
+   CARDS
+============================= */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+/* =============================
+   FOOTER (GRADIENT)
+============================= */
+.custom-footer {
+  background: var(--footer-gradient);
+  color: #c7d2fe;
+  text-align: center;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.3);
+}
+
+.custom-footer p {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* =============================
+   TIMER
+============================= */
+#timer {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+/* =============================
+   DARK MODE TRANSITIONS
+============================= */
+body.dark-mode .card {
+  box-shadow: 0 6px 18px rgba(255,255,255,0.05);
+}
+
+/* =============================
+   DARK MODE
+============================= */
+
+body.dark-mode {
+  background-color: #020617;
+  color: #e5e7eb;
+}
+
+/* Cards */
+body.dark-mode .card {
+  background-color: #0f172a;
+  color: #e5e7eb;
+}
+
+/* Navbar */
+body.dark-mode .custom-navbar {
+  background: linear-gradient(90deg, #020617, #0f172a);
+}
+
+/* Footer */
+body.dark-mode .custom-footer {
+  background: linear-gradient(90deg, #020617, #020617);
+}
+
+/* Links */
+body.dark-mode a {
+  color: #93c5fd;
+}
+
+body.dark-mode a:hover {
+  color: #bfdbfe;
+}

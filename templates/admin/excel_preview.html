@@ -1,0 +1,36 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>Preview Quiz Questions</h1>
+
+<p>Total Questions: <strong>{{ data|length }}</strong></p>
+
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Question</th>
+            <th>Difficulty</th>
+            <th>Correct</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for q in data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ q.question }}</td>
+            <td>{{ q.difficulty }}</td>
+            <td>{{ q.correct }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<form method="post" action="{% url 'admin:quiz_confirm_import' %}">
+    {% csrf_token %}
+    <button type="submit" class="default">
+        Confirm Import
+    </button>
+    <a href="../" class="button cancel-link">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "myapp/base.html" %}
+{% block title %}My Dashboard | Quizinomad{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <h3 class="mb-4">👤 My Dashboard</h3>
+
+  <div class="card p-4 mb-4">
+  <h5 class="mb-3">✏️ Edit Profile</h5>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Username</label>
+        {{ form.username }}
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Email</label>
+        {{ form.email }}
+      </div>
+    </div>
+
+    <button class="btn btn-primary mt-3">
+      Save Changes
+    </button>
+  </form>
+</div>
+
+  <!-- STAT CARDS -->
+  <div class="row g-4 mb-4">
+
+    <div class="col-md-4">
+      <div class="card text-center p-3 shadow-sm">
+        <h6>Total Attempts</h6>
+        <h2 class="fw-bold">{{ total_attempts }}</h2>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card text-center p-3 shadow-sm">
+        <h6>Average Score</h6>
+        <h2 class="fw-bold">{{ avg_score|floatformat:1 }}</h2>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card text-center p-3 shadow-sm">
+        <h6>Best Score</h6>
+        <h2 class="fw-bold">{{ best_score }}</h2>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RECENT ATTEMPTS -->
+  <div class="card p-4 shadow-sm">
+    <h5 class="mb-3">🕒 Recent Quiz Attempts</h5>
+
+    {% if recent_attempts %}
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Quiz</th>
+          <th>Score</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in recent_attempts %}
+        <tr>
+          <td>{{ a.quiz.title }}</td>
+          <td>{{ a.score }}</td>
+          <td>{{ a.completed_at|date:"d M Y, H:i" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p class="text-muted">No attempts yet. Start a quiz to see progress!</p>
+    {% endif %}
+  </div>
+
+  <!-- ACTION BUTTONS -->
+  <div class="row g-3 mt-4">
+    <div class="col-md-4">
+      <a href="{% url 'myapp:quiz_list' %}" class="btn btn-primary w-100">
+        🚀 Take a Quiz
+      </a>
+    </div>
+
+    <div class="col-md-4">
+      <a href="{% url 'myapp:my_scores' %}" class="btn btn-success w-100">
+        🏆 View All Scores
+      </a>
+    </div>
+
+    <div class="col-md-4">
+      <a href="{% url 'logout' %}" class="btn btn-danger w-100">
+        🚪 Logout
+      </a>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

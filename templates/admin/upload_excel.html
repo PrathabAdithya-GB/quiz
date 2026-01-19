@@ -1,0 +1,13 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h2>Upload Quiz Excel</h2>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="default">Upload & Preview</button>
+</form>
+
+<p class="help">File will be validated before import.</p>
+{% endblock %}

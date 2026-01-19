@@ -1,0 +1,46 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Quiz Result{% endblock %}
+
+{% block content %}
+
+<h3 class="mb-3">Quiz Result</h3>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <p><strong>Quiz:</strong> {{ attempt.quiz.title }}</p>
+    <p><strong>Score:</strong> {{ attempt.score }} / {{ attempt.total_marks }}</p>
+  </div>
+</div>
+
+{% for a in answers %}
+  <div class="card mb-2">
+    <div class="card-body">
+      <p><strong>Q{{ forloop.counter }}. {{ a.question.text }}</strong></p>
+
+      <p>
+        <strong>Your Answer:</strong>
+        {% if a.selected_choice %}
+          {{ a.selected_choice.text }}
+        {% else %}
+          <span class="text-muted">No answer</span>
+        {% endif %}
+      </p>
+
+      <p>
+        <strong>Result:</strong>
+        {% if a.is_correct %}
+          <span class="text-success">Correct</span>
+        {% else %}
+          <span class="text-danger">Wrong</span>
+        {% endif %}
+      </p>
+    </div>
+  </div>
+{% endfor %}
+
+<a href="{% url 'myapp:quiz_list' %}" class="btn btn-primary mt-3">
+  Back to Quizzes
+</a>
+
+{% endblock %}
